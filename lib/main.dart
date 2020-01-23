@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_flutter_provider/profile_view.dart';
+import 'package:mvvm_flutter_provider/bottom_navigation_view.dart';
+
 import 'package:mvvm_flutter_provider/utils/constants.dart';
 import 'package:mvvm_flutter_provider/utils/shared_preference_helper.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.hasData) {
               return snapshot.data
-                  ? ProfileView()
+                  ? BottomNavigationView()
                   : LoginScreen(title: 'Login UI');
             }
             return Container(); // noop, this builder is called again when the future completes
