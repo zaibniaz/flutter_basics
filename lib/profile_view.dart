@@ -55,9 +55,6 @@ class _ProfieleViewState extends State<ProfileView> {
 
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text('My Profile'),
-      ),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(10),

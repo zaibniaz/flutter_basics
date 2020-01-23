@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter_provider/tabs/movie_list.dart';
 
+import 'profile_view.dart';
 
 class BottomNavigationView extends StatefulWidget {
   @override
@@ -7,24 +9,9 @@ class BottomNavigationView extends StatefulWidget {
 }
 
 class _BottomNavigationViewState extends State<BottomNavigationView> {
- 
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
+
+  List<Widget> _widgetOptions = [ MovieList(),ProfileView()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -44,8 +31,8 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
+            icon: Icon(Icons.movie),
+            title: Text('Movies'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
@@ -57,7 +44,7 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );
