@@ -12,6 +12,7 @@ class MoviesBloc {
   Observable<ApiResponse<List<Movie>>> get allmovies => _moviesFetcher.stream;
 
   fetchAllMovies() async {
+    
     if (_isDisposed) {
       return;
     }

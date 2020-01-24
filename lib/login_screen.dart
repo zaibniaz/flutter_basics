@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter_provider/bottom_navigation_view.dart';
 import 'package:mvvm_flutter_provider/common_components/input_field.dart';
 import 'package:mvvm_flutter_provider/common_components/input_password_feild.dart';
 import 'package:mvvm_flutter_provider/models/user.dart';
-import 'package:mvvm_flutter_provider/profile_view.dart';
 import 'package:mvvm_flutter_provider/utils/constants.dart';
 import 'package:mvvm_flutter_provider/utils/shared_preference_helper.dart';
 import 'package:mvvm_flutter_provider/utils/utils_methods.dart';
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> with UtilsMethods {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ProfileView()));
+                                        builder: (context) => BottomNavigationView()));
                               }
                             },
                             child:

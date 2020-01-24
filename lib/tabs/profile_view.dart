@@ -3,11 +3,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mvvm_flutter_provider/models/user.dart';
 import 'package:mvvm_flutter_provider/utils/constants.dart';
 import 'package:mvvm_flutter_provider/utils/shared_preference_helper.dart';
 
-import 'login_screen.dart';
-import 'models/user.dart';
+import '../login_screen.dart';
+
+
 
 class ProfileView extends StatefulWidget {
   @override

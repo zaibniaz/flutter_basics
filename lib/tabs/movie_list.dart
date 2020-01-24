@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter_provider/common_components/error_connection_widget.dart';
+import 'package:mvvm_flutter_provider/common_components/loading_view_widget.dart';
 import 'package:mvvm_flutter_provider/general_api_response/api_response.dart';
 import 'package:mvvm_flutter_provider/models/movie_response.dart';
+import 'package:mvvm_flutter_provider/views/movie_detail.dart';
 import '../blocs/movies_bloc.dart';
 
 class MovieList extends StatefulWidget {
@@ -31,22 +34,24 @@ class MovieListState extends State<MovieList> {
           stream: bloc.allmovies,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              print("Loading$snapshot.data.status");
               switch (snapshot.data.status) {
                 case Status.LOADING:
-                  return Loading(loadingMessage: snapshot.data.message);
+                  return LoadingViewWidget(
+                      loadingMessage: snapshot.data.message);
                   break;
                 case Status.COMPLETED:
                   return buildList(snapshot.data.data);
                   break;
                 case Status.ERROR:
-                  return Error(
+                  return ErrorConnectionWidget(
                     errorMessage: snapshot.data.message,
                     onRetryPressed: () => bloc.allmovies,
                   );
                   break;
               }
             }
-            return Container();
+            return LoadingViewWidget(loadingMessage: 'Fetching Movies');
           },
         ),
       ),
@@ -66,71 +71,13 @@ class MovieListState extends State<MovieList> {
                 'https://image.tmdb.org/t/p/w185${snapshot[index].posterPath}',
                 fit: BoxFit.cover,
               ),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext ctx) =>
+                          MovieDetail(movie: snapshot[index]))),
             ),
           );
         });
-  }
-}
-
-class Error extends StatelessWidget {
-  final String errorMessage;
-
-  final Function onRetryPressed;
-
-  const Error({Key key, this.errorMessage, this.onRetryPressed})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            errorMessage,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.lightGreen,
-              fontSize: 18,
-            ),
-          ),
-          SizedBox(height: 8),
-          RaisedButton(
-            color: Colors.lightGreen,
-            child: Text('Retry', style: TextStyle(color: Colors.white)),
-            onPressed: onRetryPressed,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class Loading extends StatelessWidget {
-  final String loadingMessage;
-
-  const Loading({Key key, this.loadingMessage}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            loadingMessage,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.lightGreen,
-              fontSize: 24,
-            ),
-          ),
-          SizedBox(height: 24),
-          CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.lightGreen),
-          ),
-        ],
-      ),
-    );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter_provider/tabs/movie_list.dart';
+import 'package:mvvm_flutter_provider/tabs/profile_view.dart';
 
-import 'profile_view.dart';
 
 class BottomNavigationView extends StatefulWidget {
   @override
@@ -22,8 +22,10 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+ resizeToAvoidBottomInset: false,
+  resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: const Text('Movies'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
