@@ -5,7 +5,7 @@ import 'package:mvvm_flutter_provider/models/movie_item_model.dart';
 
 class MovieApiProvider {
   Client client = new Client();
-  final api_key = 'f944bd4c';
+  final api_key = 'c9df6a11708c1aa0695960cd503ee23a';
   final _baseUrl =
       'http://api.themoviedb.org/3/movie';
 

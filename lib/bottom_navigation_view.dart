@@ -11,7 +11,7 @@ class BottomNavigationView extends StatefulWidget {
 class _BottomNavigationViewState extends State<BottomNavigationView> {
   int _selectedIndex = 0;
 
-  List<Widget> _widgetOptions = [ MovieList(),ProfileView()];
+  List<Widget> _widgetOptions = [MovieList(), ProfileView()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -35,18 +35,22 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
             title: Text('Movies'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
+            icon: Icon(Icons.person),
+            title: Text('Profile'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
+            icon: Icon(Icons.account_balance),
+            title: Text('Balance'),
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
+
+      
     );
   }
+    @override
+  bool get wantKeepAlive => true;
 }
